@@ -147,10 +147,10 @@ In the Mouf interface, click on "Instance", "Create a new instance by PHP code" 
 | RABBITMQ_API_HOST       | RABBITMQ_API_HOST  |
 | RABBITMQ_API_PORT       | RABBITMQ_API_PORT  |
 | RABBITMQ_MAINQUEUE       | RABBITMQ_MAINQUEUE  |
-| Mouf\Utils\Task\Services\RabbitMQ\Connection       | return RabbitMQServiceProvider::createConnection($container)  |
-| League\Tactician\CommandBus       | return RabbitMQServiceProvider::createCommandBus($container)  |
-| Mouf\Utils\Task\Services\RabbitMQ\ConsumerService       | return RabbitMQServiceProvider::createConsumerService($container)  |
-| Mouf\Utils\Task\Commands\RabbitMQ\ConsumerCommand       | return RabbitMQServiceProvider::createConsumerCommand($container)  |
-| Mouf\Utils\Task\Services\RabbitMQ\ProducerService       | return RabbitMQServiceProvider::createProducerService($container)  |
+| Mouf\Utils\Task\Services\RabbitMQ\Connection       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createConnection($container);  |
+| League\Tactician\CommandBus       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createCommandBus($container);  |
+| Mouf\Utils\Task\Services\RabbitMQ\ConsumerService       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createConsumerService($container);  |
+| Mouf\Utils\Task\Commands\RabbitMQ\ConsumerCommand       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createConsumerCommand($container);  |
+| Mouf\Utils\Task\Services\RabbitMQ\ProducerService       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createProducerService($container);  |
 
 To finish, search the "console" instance (class Mouf\Console\ConsoleApplication) and the "Mouf\Utils\Task\Commands\RabbitMQ\ConsumerCommand" isntance to the "commands" array.

@@ -21,8 +21,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Mouf\\Utils\\Action": "src/",
-            "Mouf\\Utils\\Session\\SessionManager": "src/"
+            "Mouf\\Utils\\Task": "src/"
         }
     }
 }
