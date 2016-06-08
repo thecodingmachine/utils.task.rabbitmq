@@ -28,15 +28,16 @@ This service provider is meant to provide all the class used to create task.
 ## Expected values / services
 
 This *service provider* expects the following configuration / services to be available:
-| Name            | Compulsory | Description                            |
-|-----------------|------------|----------------------------------------|
-| `RABBITMQ_HOST`       | **yes**       | The RabbitMQ host. |
-| `RABBITMQ_PORT`       | **yes**       | The RabbitMQ user.  |
-| `RABBITMQ_USER`   | **yes**       | The RabbitMQ password.  |
-| `RABBITMQ_PASSWORD`       | **yes**      | The RabbitMQ port.  |
-| `RABBITMQ_API_HOST`     | **yes**    | The RabbitMQ management host.  |
-| `RABBITMQ_API_PORT`    | **yes**    | The RabbitMQ management port.  |
-| `RABBITMQ_MAINQUEUE`    | **yes**    | The RabbitMQ main queue name  |
+
+| Name                 | Compulsory      | Description                            |
+|----------------------|------------|----------------------------------------|
+| `RABBITMQ_HOST`      |  **yes**    | The RabbitMQ host.                     |
+| `RABBITMQ_PORT`      |  **yes**    | The RabbitMQ user.                     |
+| `RABBITMQ_USER`      |  **yes**    | The RabbitMQ password.                 |
+| `RABBITMQ_PASSWORD`  |  **yes**    | The RabbitMQ port.                     |
+| `RABBITMQ_API_HOST`  |  **yes**    | The RabbitMQ management host.          |
+| `RABBITMQ_API_PORT`  |  **yes**    | The RabbitMQ management port.          |
+| `RABBITMQ_MAINQUEUE` |  **yes**    | The RabbitMQ main queue name           |
 
 You can edit the connection instance to add an error queue, if it's enable or not, the max tries by error and the priority.
 
@@ -136,6 +137,7 @@ Add the constant :
 - RABBITMQ_MAINQUEUE
 
 In the Mouf interface, click on "Instance", "Create a new instance by PHP code" and create the followig elements:
+
 | Instance name            | Code   |
 |-----------------|------------|
 | RABBITMQ_HOST      | return RABBITMQ_HOST  |
