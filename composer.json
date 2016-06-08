@@ -1,5 +1,5 @@
 {
-    "name": "mouf/utils.task.rabitmq",
+    "name": "mouf/utils.task.rabbitmq",
     "description": "This package is used to manage task in RabbitMq. It provides classes to create task in RabbitMq and consums it.",
     "keywords": ["session", "mouf"],
     "homepage": "https://github.com/thecodingmachine/utils.task.rabbitmq",
