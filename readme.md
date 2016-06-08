@@ -29,15 +29,19 @@ This service provider is meant to provide all the class used to create task.
 
 This *service provider* expects the following configuration / services to be available:
 
-| Name                 | Compulsory      | Description                            |
-|----------------------|------------|----------------------------------------|
-| `RABBITMQ_HOST`      |  **yes**    | The RabbitMQ host.                     |
-| `RABBITMQ_PORT`      |  **yes**    | The RabbitMQ user.                     |
-| `RABBITMQ_USER`      |  **yes**    | The RabbitMQ password.                 |
-| `RABBITMQ_PASSWORD`  |  **yes**    | The RabbitMQ port.                     |
-| `RABBITMQ_API_HOST`  |  **yes**    | The RabbitMQ management host.          |
-| `RABBITMQ_API_PORT`  |  **yes**    | The RabbitMQ management port.          |
-| `RABBITMQ_MAINQUEUE` |  **yes**    | The RabbitMQ main queue name           |
+| Name                 | Compulsory      | Type | Description                            |
+|----------------------|-----------------|------|-----------------------------|
+| `RABBITMQ_HOST`      |  **yes**    | String | The RabbitMQ host.                     |
+| `RABBITMQ_PORT`      |  **yes**    | String | The RabbitMQ user.                     |
+| `RABBITMQ_USER`      |  **yes**    | String | The RabbitMQ password.                 |
+| `RABBITMQ_PASSWORD`  |  **yes**    | String | The RabbitMQ port.                     |
+| `RABBITMQ_API_HOST`  |  **yes**    | String | The RabbitMQ management host.          |
+| `RABBITMQ_API_PORT`  |  **yes**    | String | The RabbitMQ management port.          |
+| `RABBITMQ_MAINQUEUE` |  **yes**    | String | The RabbitMQ main queue name           |
+| `RABBITMQ_ERRORQUEUE` |  *no*    | String | The RabbitMQ error queue name           |
+| `RABBITMQ_MAXPRIORITY` |  *no*    | Integer | The RabbitMQ max priority           |
+| `RABBITMQ_MAXTRIES` |  *no*    | Integer | The RabbitMQ max tries           |
+| `RABBITMQ_ENABLE` |  *no*    | Boolean | The RabbitMQ enable           |
 
 You can edit the connection instance to add an error queue, if it's enable or not, the max tries by error and the priority.
 
@@ -135,18 +139,26 @@ Add the constant :
 - RABBITMQ_API_HOST
 - RABBITMQ_API_PORT
 - RABBITMQ_MAINQUEUE
+- RABBITMQ_ERRORQUEUE
+- RABBITMQ_MAXPRIORITY
+- RABBITMQ_MAXTRIES
+- RABBITMQ_ENABLE
 
 In the Mouf interface, click on "Instance", "Create a new instance by PHP code" and create the followig elements:
 
 | Instance name            | Code   |
 |-----------------|------------|
-| RABBITMQ_HOST      | return RABBITMQ_HOST  |
-| RABBITMQ_PORT       | RABBITMQ_PORT  |
-| RABBITMQ_USER       | RABBITMQ_USER  |
-| RABBITMQ_PASSWORD       | RABBITMQ_PASSWORD  |
-| RABBITMQ_API_HOST       | RABBITMQ_API_HOST  |
-| RABBITMQ_API_PORT       | RABBITMQ_API_PORT  |
-| RABBITMQ_MAINQUEUE       | RABBITMQ_MAINQUEUE  |
+| RABBITMQ_HOST      | return RABBITMQ_HOST;  |
+| RABBITMQ_PORT       | return RABBITMQ_PORT;  |
+| RABBITMQ_USER       | return RABBITMQ_USER;  |
+| RABBITMQ_PASSWORD       | return RABBITMQ_PASSWORD;  |
+| RABBITMQ_API_HOST       | return RABBITMQ_API_HOST;  |
+| RABBITMQ_API_PORT       | return RABBITMQ_API_PORT;  |
+| RABBITMQ_MAINQUEUE       | return RABBITMQ_MAINQUEUE;  |
+| RABBITMQ_ERRORQUEUE       | return RABBITMQ_ERRORQUEUE;  |
+| RABBITMQ_MAXPRIORITY       | return RABBITMQ_MAXPRIORITY;  |
+| RABBITMQ_MAXTRIES       | return RABBITMQ_MAXTRIES;  |
+| RABBITMQ_ENABLE       | return RABBITMQ_ENABLE;  |
 | Mouf\Utils\Task\Services\RabbitMQ\Connection       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createConnection($container);  |
 | League\Tactician\CommandBus       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createCommandBus($container);  |
 | Mouf\Utils\Task\Services\RabbitMQ\ConsumerService       | return \Mouf\Utils\Task\DI\RabbitMQServiceProvider::createConsumerService($container);  |

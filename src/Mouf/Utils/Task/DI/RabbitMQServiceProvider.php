@@ -40,7 +40,11 @@ class RabbitMQServiceProvider implements ServiceProvider
                             $container->get('RABBITMQ_PASSWORD'),
                             $container->get('RABBITMQ_API_HOST'),
                             $container->get('RABBITMQ_API_PORT'),
-                            $container->get('RABBITMQ_MAINQUEUE'));
+                            $container->get('RABBITMQ_MAINQUEUE'),
+                            $container->get('RABBITMQ_ERRORQUEUE'),
+                            $container->get('RABBITMQ_MAXPRIORITY'),
+                            $container->get('RABBITMQ_MAXTRIES'),
+                            $container->get('RABBITMQ_ENABLE'));
     }
 
     public static function createCommandBus(ContainerInterface $container)
