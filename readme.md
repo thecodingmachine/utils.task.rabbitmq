@@ -30,13 +30,13 @@ This service provider is meant to provide all the class used to create task.
 This *service provider* expects the following configuration / services to be available:
 | Name            | Compulsory | Description                            |
 |-----------------|------------|----------------------------------------|
-| `RABBITMQ_HOST`       | *no*       | The RabbitMQ host. Defaults to *localhost*  |
-| `RABBITMQ_PORT`       | *no*       | The database user. Defaults to *root*  |
-| `RABBITMQ_USER`   | *no*       | The database password. Defaults to *empty*  |
-| `RABBITMQ_PASSWORD`       | *no*       | The database port. Defaults to *3306*  |
-| `RABBITMQ_API_HOST`     | **yes**    | The database name.  |
-| `RABBITMQ_API_PORT`    | *no*    | The database character set.  |
-| `RABBITMQ_MAINQUEUE`    | *no*    | An array of driver options. Defaults to `[1002 =>"SET NAMES utf8"]`  |
+| `RABBITMQ_HOST`       | **yes**       | The RabbitMQ host. |
+| `RABBITMQ_PORT`       | **yes**       | The RabbitMQ user.  |
+| `RABBITMQ_USER`   | **yes**       | The RabbitMQ password.  |
+| `RABBITMQ_PASSWORD`       | **yes**      | The RabbitMQ port.  |
+| `RABBITMQ_API_HOST`     | **yes**    | The RabbitMQ management host.  |
+| `RABBITMQ_API_PORT`    | **yes**    | The RabbitMQ management port.  |
+| `RABBITMQ_MAINQUEUE`    | **yes**    | The RabbitMQ main queue name  |
 
 You can edit the connection instance to add an error queue, if it's enable or not, the max tries by error and the priority.
 
@@ -44,10 +44,10 @@ You can edit the connection instance to add an error queue, if it's enable or no
 
 This *service provider* provides the following services:
 
-| Service name                | Description                          |
-|-----------------------------|--------------------------------------|
-| `Mouf\Utils\Task\Services\RabbitMQ\Connection`  | RabbitMQ connection   |
-| `League\Tactician\CommandBus`  | Bus to manage the task type   |
+| Service name                                         | Description                          |
+|------------------------------------------------------|--------------------------------------|
+| `Mouf\Utils\Task\Services\RabbitMQ\Connection`       | RabbitMQ connection   |
+| `League\Tactician\CommandBus`                        | Bus to manage the task type   |
 | `Mouf\Utils\Task\Services\RabbitMQ\ConsumerService`  | Class to consum the RabbitMQ queue   |
 | `Mouf\Utils\Task\Commands\RabbitMQ\ConsumerCommand`  | Class to add a command to consum the RabbitMQ queue   |
 | `Mouf\Utils\Task\Services\RabbitMQ\ProducerService`  | Class to product a task in the RabbitMQ queue   |
@@ -137,7 +137,7 @@ Add the constant :
 
 In the Mouf interface, click on "Instance", "Create a new instance by PHP code" and create the followig elements:
 | Instance name            | Code   |
-|-----------------|------------|----------------------------------------|
+|-----------------|------------|
 | RABBITMQ_HOST      | return RABBITMQ_HOST  |
 | RABBITMQ_PORT       | RABBITMQ_PORT  |
 | RABBITMQ_USER       | RABBITMQ_USER  |
