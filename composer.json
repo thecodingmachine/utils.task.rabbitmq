@@ -25,13 +25,4 @@
             "Mouf\\Utils\\Session\\SessionManager": "src/"
         }
     },
-    "extra": {
-	     "mouf": {
-		    "install" : [{
-			    "type" : "class",
-			    "class" : "Mouf\\Utils\\Patcher\\PatchInstaller",
-			    "description": "Create the patchService instance."
-			}]
-		}
-    }
 }
