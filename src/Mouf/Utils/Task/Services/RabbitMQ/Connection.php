@@ -10,6 +10,7 @@ namespace Mouf\Utils\Task\Services\RabbitMQ;
 
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use GuzzleHttp\Client;
 
 class Connection
 {
@@ -63,6 +64,34 @@ class Connection
     private $maxTries;
 
     /**
+     * RabbitMQ user.
+     *
+     * @var string
+     */
+    private $user;
+
+    /**
+     * RabbitMQ password.
+     *
+     * @var string
+     */
+    private $password;
+
+    /**
+     * RabbitMQ management host.
+     *
+     * @var string
+     */
+    private $apiHost;
+
+    /**
+     * RabbitMQ management port.
+     *
+     * @var string
+     */
+    private $apiPort;
+
+    /**
      * Exchanger name.
      *
      * @var string
@@ -82,10 +111,14 @@ class Connection
      * @param number $maxTries    Max tries if the task is in error before kill it
      * @param bool   $enable      If you want to disable RabbitMq, it it's disable this execute the task in real time 
      */
-    public function __construct($host, $port, $user, $password, $mainQueue, $errorQueue = null, $maxPriority = 1, $maxTries = 5, $enable = true)
+    public function __construct($host, $port, $user, $password, $apiHost, $apiPort, $mainQueue, $errorQueue, $maxPriority, $maxTries, $enable)
     {
         $this->enable = $enable;
         $this->mainQueue = $mainQueue;
+        $this->user = $user;
+        $this->password = $password;
+        $this->apiHost = $apiHost;
+        $this->apiPort = $apiPort;
         $this->errorQueue = $errorQueue;
         $this->maxPriority = $maxPriority;
         $this->maxTries = $maxTries;
@@ -149,5 +182,25 @@ class Connection
     public function getChannel()
     {
         return $this->channel;
+    }
+
+    /**
+     * @param $queueName
+     */
+    public function getNumberOfMessages($queueName)
+    {
+        $client = new Client();
+        $res = $client->get('http://'.$this->apiHost.':'.$this->apiPort.'/api/queues', [
+            'auth' => [$this->user, $this->password],
+        ]);
+        $queues = json_decode($res->getBody(), true);
+
+        foreach ($queues as $queue) {
+            if ($queue['name'] == $queueName) {
+                return $queue['messages_ready'];
+            }
+        }
+
+        return 0;
     }
 }
