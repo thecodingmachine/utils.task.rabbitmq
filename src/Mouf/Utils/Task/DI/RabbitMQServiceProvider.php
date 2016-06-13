@@ -9,7 +9,7 @@ use League\Tactician\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
 use League\Tactician\Handler\Locator\CallableLocator;
-use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
+use League\Tactician\Handler\MethodNameInflector\HandleInflector;
 use Mouf\Utils\Task\Services\RabbitMQ\ConsumerService;
 use Mouf\Utils\Task\Commands\RabbitMQ\ConsumerCommand;
 use Mouf\Utils\Task\Services\RabbitMQ\ProducerService;
@@ -55,7 +55,7 @@ class RabbitMQServiceProvider implements ServiceProvider
                                         $serviceName = str_replace('Task', 'Handler', $serviceName);
 
                                         return $container->get($serviceName);
-                                    }), new MethodNameInflector())];
+                                    }), new HandleInflector())];
 
         return new CommandBus($middleware);
     }

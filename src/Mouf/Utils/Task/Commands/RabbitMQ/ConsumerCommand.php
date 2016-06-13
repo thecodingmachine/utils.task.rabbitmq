@@ -2,7 +2,7 @@
 
 namespace Mouf\Utils\Task\Commands\RabbitMQ;
 
-use ABCSalles\Services\RabbitMQ\ConsumerService;
+use Mouf\Utils\Task\Services\RabbitMQ\ConsumerService;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
